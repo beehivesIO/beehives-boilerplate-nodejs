@@ -25,7 +25,7 @@ suspend(function*() {
     };
     yield fs.writeFile(
       '.servicesHub.json',
-      jsonFormat(JSON.stringify(servicesHubJson)),
+      jsonFormat(servicesHubJson),
       resume()
     );
   }

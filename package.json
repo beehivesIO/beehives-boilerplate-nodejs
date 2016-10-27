@@ -1,6 +1,6 @@
 {
   "name": "services-hub-boilerplate-nodejs",
-  "version": "0.0.34",
+  "version": "0.0.37",
   "description": "servicesHub nodeJS boilerplate",
   "main": "server.js",
   "scripts": {
@@ -23,12 +23,13 @@
   "homepage": "https://github.com/Bacto/services-hub-boilerplate-nodejs#readme",
   "dependencies": {
     "fs-extra": "^0.30.0",
-    "suspend": "^0.7.0",
     "good": "^7.0.2",
     "good-console": "^6.1.2",
     "hapi": "^15.1.1",
     "joi": "^9.1.1",
-    "node-dir": "^0.1.16"
+    "json-format": "^0.1.2",
+    "node-dir": "^0.1.16",
+    "suspend": "^0.7.0"
   },
   "devDependencies": {
     "babel-cli": "^6.16.0",

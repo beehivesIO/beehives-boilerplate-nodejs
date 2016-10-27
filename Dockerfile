@@ -5,9 +5,10 @@ RUN apk add nodejs
 RUN npm i -g nodemon
 
 VOLUME [ "/datas" ]
-RUN ls -al /datas/
 WORKDIR /datas
 
-EXPOSE 8080
+ENV NODE_ENV production
+
+EXPOSE 9090
 
 ENTRYPOINT npm start

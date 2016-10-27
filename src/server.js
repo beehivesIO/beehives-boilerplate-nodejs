@@ -8,20 +8,31 @@ import nodeDir from 'node-dir';
 import good from 'good';
 import suspend, { resume, resumeRaw } from 'suspend';
 import process from 'process';
-import fsExtra from 'fs-extra';
+import path from 'path';
 import fs from 'fs';
+import jsonFormat from 'json-format';
 
 suspend(function*() {
-  // // Install boilerplate if not yet installed
-  // const lstat = yield fs.lstat(process.cwd() + '/.servicesHub.json', resumeRaw());
-  // if (lstat[0]) {
-  //   console.log('Install boilerplate');
-  //   yield fsExtra.copy(__dirname + '/../boilerplate', process.cwd(), resume());
-  // }
+
+  // Create configuration file if not exists yet
+  const lstat = yield fs.lstat('.servicesHub.json', resumeRaw());
+  if (lstat[0]) {
+    const name = path.basename(process.env.PWD);
+    const servicesHubJson = {
+      boilerplate: 'nodejs',
+      version: '0.0.1',
+      name
+    };
+    yield fs.writeFile(
+      '.servicesHub.json',
+      jsonFormat(JSON.stringify(servicesHubJson)),
+      resume()
+    );
+  }
 
 
   const server = new Hapi.Server();
-  const port = 9090; // DO NOT CHANGE IT. If you want to change it, see README.md
+  const port = 9090;
 
   server.connection({ port });
 
@@ -47,7 +58,7 @@ suspend(function*() {
     const route = require(routeFile);
 
     const routePath = routeFile
-    .replace(/^routes/, '')
+    .replace(process.cwd() + '/routes', '')
     .replace(/\.js$/, '')
     .replace(/\((?:GET|POST|PUT|PATCH|DELETE|OPTIONS|\*|\|)+\)$/, '')
     .replace(/_default$/, '');

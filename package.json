@@ -1,6 +1,6 @@
 {
   "name": "services-hub-boilerplate-nodejs",
-  "version": "0.0.39",
+  "version": "0.0.41",
   "description": "servicesHub nodeJS boilerplate",
   "main": "server.js",
   "scripts": {
@@ -29,9 +29,7 @@
     "joi": "^9.1.1",
     "json-format": "^0.1.2",
     "node-dir": "^0.1.16",
-    "suspend": "^0.7.0"
-  },
-  "devDependencies": {
+    "suspend": "^0.7.0",
     "babel-cli": "^6.16.0",
     "babel-plugin-transform-object-rest-spread": "^6.16.0",
     "babel-polyfill": "^6.16.0",

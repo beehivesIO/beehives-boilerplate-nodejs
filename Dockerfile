@@ -1,7 +1,5 @@
-FROM alpine
+FROM node:latest
 
-RUN apk update && apk upgrade
-RUN apk add nodejs
 RUN npm i -g nodemon
 
 VOLUME [ "/datas" ]

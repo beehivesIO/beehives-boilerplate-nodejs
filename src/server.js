@@ -20,7 +20,7 @@ suspend(function*() {
     const name = path.basename(process.env.PWD);
     const servicesHubJson = {
       boilerplate: 'nodejs',
-      version: '0.0.1',
+      boilerplateVersion: '0.0.1',
       name
     };
     yield fs.writeFile(

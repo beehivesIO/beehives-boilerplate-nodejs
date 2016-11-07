@@ -52,9 +52,10 @@ suspend(function*() {
 
 
   // Load route
+  console.log('Loading routes:');
   const routesFiles = yield nodeDir.files(process.cwd() + '/routes/', resume());
   for (const routeFile of routesFiles) {
-    console.log(routeFile);
+    console.log('\t- ' + routeFile);
     const route = require(routeFile);
 
     const routePath = routeFile
@@ -72,6 +73,14 @@ suspend(function*() {
 
   // Start server
   yield server.start(resume());
-  console.log('Server is running');
+  console.log(`
+Your micro service is running :)
+You can access to it through http://localhost:${port}
+You can edit routes files in folder routes/
+
+To deploy your service, simply use "services-hub deploy"
+
+Enjoy :)
+`);
 
 })();

@@ -1,6 +1,6 @@
 {
   "name": "services-hub-boilerplate-nodejs",
-  "version": "0.0.42",
+  "version": "0.0.43",
   "description": "servicesHub nodeJS boilerplate",
   "main": "server.js",
   "scripts": {

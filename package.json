@@ -9,7 +9,8 @@
     "build-app": "node_modules/.bin/babel src -d build --presets es2015 --plugins transform-object-rest-spread -s",
     "build": "npm run clean && npm run build-app",
     "prepublish": "npm run build",
-    "postinstall": "./install.sh"
+    "postinstall": "./install.sh",
+    "deploy": "./deploy.sh"
   },
   "repository": {
     "type": "git",

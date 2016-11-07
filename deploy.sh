@@ -47,5 +47,5 @@ git push origin
 git push origin --tags
 
 
-title "Deploying to production" $green
-pm2 deploy production
+title "Publishing to npm" $green
+npm publish

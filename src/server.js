@@ -55,7 +55,6 @@ suspend(function*() {
   console.log('Loading routes:');
   const routesFiles = yield nodeDir.files(process.cwd() + '/routes/', resume());
   for (const routeFile of routesFiles) {
-    console.log('\t- ' + routeFile);
     const route = require(routeFile);
 
     const routePath = routeFile
@@ -67,6 +66,8 @@ suspend(function*() {
 
     const methodsString = routeFile.match(/\(((?:GET|POST|PUT|PATCH|DELETE|OPTIONS|\*|\|)+)\)\.js$/);
     route.method = methodsString ? methodsString[1].split('|') : '*';
+
+    console.log('\t- http://localhost:${port}${route.path} (${route.method})');
 
     server.route(route);
   }

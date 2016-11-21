@@ -15,17 +15,17 @@ import jsonFormat from 'json-format';
 suspend(function*() {
 
   // Create configuration file if not exists yet
-  const lstat = yield fs.lstat('.servicesHub.json', resumeRaw());
+  const lstat = yield fs.lstat('.beehives.json', resumeRaw());
   if (lstat[0]) {
     const name = path.basename(process.env.PWD);
-    const servicesHubJson = {
+    const beehivesJson = {
       boilerplate: 'nodejs',
       boilerplateVersion: '0.0.1',
       name
     };
     yield fs.writeFile(
-      '.servicesHub.json',
-      jsonFormat(servicesHubJson),
+      '.beehives.json',
+      jsonFormat(beehivesJson),
       resume()
     );
   }
@@ -79,7 +79,7 @@ Your micro service is running :)
 You can access to it through http://localhost:${port}
 You can edit routes files in folder routes/
 
-To deploy your service, simply use "services-hub deploy"
+To deploy your service, simply use "beehives deploy"
 
 Enjoy :)
 `);

@@ -1,6 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 
-if [ "$NODE_ENV" == "production" ]
+if [[ "$NODE_ENV" == "production" ]]
 then
   yarn install
 fi

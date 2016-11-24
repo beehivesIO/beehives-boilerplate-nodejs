@@ -1,6 +1,7 @@
 FROM node:latest
 
 RUN curl -o- -L https://yarnpkg.com/install.sh | bash
+ENV PATH "$HOME/.yarn/bin:$PATH"
 RUN yarn install -g nodemon
 
 VOLUME [ "/datas" ]

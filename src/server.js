@@ -14,13 +14,15 @@ import jsonFormat from 'json-format';
 
 suspend(function*() {
 
+  const packageJson = require(__dirname + '/../package.json');
+
   // Create configuration file if not exists yet
   const lstat = yield fs.lstat('.beehives.json', resumeRaw());
   if (lstat[0]) {
     const name = path.basename(process.env.PWD);
     const beehivesJson = {
       boilerplate: 'nodejs',
-      boilerplateVersion: '0.0.1',
+      boilerplateVersion: packageJson.version,
       name
     };
     yield fs.writeFile(

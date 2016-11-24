@@ -2,7 +2,7 @@
 
 if [ "$NODE_ENV" == "production" ]
 then
-  npm install
+  yarn install
 fi
 
 node_modules/.bin/babel-watch --watch routes/ --presets es2015 --plugins transform-object-rest-spread node_modules/.bin/beehives-server-nodejs

@@ -79,6 +79,7 @@ suspend(function*() {
   console.log(`
 Your micro service is running :)
 You can access to it through http://localhost:${port}
+
 You can edit routes files in folder routes/
 
 To deploy your service, simply use "beehives deploy"

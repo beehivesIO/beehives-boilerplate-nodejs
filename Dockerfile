@@ -1,6 +1,7 @@
 FROM node:latest
 
-RUN npm i -g nodemon
+RUN curl -o- -L https://yarnpkg.com/install.sh | bash
+RUN yarn install -g nodemon
 
 VOLUME [ "/datas" ]
 WORKDIR /datas
@@ -9,4 +10,4 @@ ENV NODE_ENV production
 
 EXPOSE 9090
 
-ENTRYPOINT npm start
+ENTRYPOINT yarn start

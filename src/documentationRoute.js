@@ -34,7 +34,8 @@ module.exports = {
       const methods = methodsString ? methodsString[1].split('|') : '*';
 
       const route = require(routeFile);
-      const jsonSchema = joiToJsonSchema(joi.object(route.validate));
+      const validate = route.config ? route.config.validate : {};
+      const jsonSchema = joiToJsonSchema(joi.object(validate));
       routes.push({
         path,
         methods,

@@ -37,7 +37,12 @@ suspend(function*() {
   const server = new Hapi.Server();
   const port = 9090;
 
-  server.connection({ port });
+  server.connection({
+    port,
+    routes: {
+      cors: true
+    }
+  });
 
 
   // Log to console in dev mode

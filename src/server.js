@@ -21,7 +21,7 @@ suspend(function*() {
   const packageJson = require(__dirname + '/../package.json');
 
   // Create configuration file if not exists yet
-  const lstat = yield fs.lstat('.beehives.json', resumeRaw());
+  const lstat = yield fs.lstat(process.cwd() + '/.beehives.json', resumeRaw());
   if (lstat[0]) {
     const name = path.basename(process.env.PWD);
     const beehivesJson = {
@@ -36,7 +36,7 @@ suspend(function*() {
       resume()
     );
   }
-  const beehivesConf = JSON.parse(yield fs.readFile('.beehives.json', 'utf8', resume()));
+  const beehivesConf = JSON.parse(yield fs.readFile(process.cwd() + '/.beehives.json', 'utf8', resume()));
 
 
   const server = new Hapi.Server();
@@ -74,7 +74,7 @@ suspend(function*() {
         info: {
           title: beehivesConf.name,
           version: beehivesConf.version,
-          description: yield fs.readFile('README.md', 'utf8', resume())
+          description: yield fs.readFile(process.cwd() + '/README.md', 'utf8', resume())
         }
       }
     }], resume());

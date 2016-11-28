@@ -28,7 +28,8 @@ suspend(function*() {
       boilerplate: 'nodejs',
       boilerplateVersion: packageJson.version,
       name,
-      version: '0.0.1'
+      version: '0.0.1',
+      description: 'My first microservice'
     };
     yield fs.writeFile(
       '.beehives.json',
@@ -73,7 +74,8 @@ suspend(function*() {
       options: {
         info: {
           title: beehivesConf.name,
-          version: beehivesConf.version
+          version: beehivesConf.version,
+          description: beehivesConf.description
         }
       }
     }], resume());

@@ -5,9 +5,16 @@ import joi from 'joi';
 
 module.exports = {
   config: {
+    description: 'An advanced route',
+    notes: 'Return a JSON object with a congrats message',
     validate: {
       payload: {
-        name: joi.string().required()
+
+        name: joi
+          .string()
+          .required()
+          .description('The user name')
+          
       }
     }
   },

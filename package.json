@@ -40,6 +40,6 @@
     "vision": "^4.1.0"
   },
   "bin": {
-    "beehives-server-nodejs": "./build/server.js"
+    "beehives-server-nodejs": "./start.sh"
   }
 }

@@ -28,8 +28,7 @@ suspend(function*() {
       boilerplate: 'nodejs',
       boilerplateVersion: packageJson.version,
       name,
-      version: '0.0.1',
-      description: 'My first microservice'
+      version: '0.0.1'
     };
     yield fs.writeFile(
       '.beehives.json',
@@ -75,7 +74,7 @@ suspend(function*() {
         info: {
           title: beehivesConf.name,
           version: beehivesConf.version,
-          description: beehivesConf.description
+          description: yield fs.readFile('README.md', 'utf8', resume())
         }
       }
     }], resume());

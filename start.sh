@@ -5,7 +5,8 @@ then
   yarn install
 fi
 
-npm run installation
+
+node node_modules/beehives-boilerplate-nodejs/build/installation.js
 
 ./node_modules/babel-watch/babel-watch.js \
   --watch routes/ \

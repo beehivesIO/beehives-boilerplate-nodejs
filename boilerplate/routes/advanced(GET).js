@@ -5,7 +5,6 @@ import joi from 'joi';
 
 module.exports = {
   config: {
-    description: 'An advanced route',
     notes: 'Return a JSON object with a congrats message and params received',
     validate: {
       query: {

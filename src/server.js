@@ -96,7 +96,8 @@ suspend(function*() {
           title: beehivesConf.name,
           version: beehivesConf.version,
           description: yield fs.readFile('README.md', 'utf8', resume())
-        }
+        },
+        consumes: [ 'application/form-data' ]
       }
     }], resume());
 
@@ -131,7 +132,6 @@ suspend(function*() {
   yield server.start(resume());
   console.log(`
 Your micro service is running :)
-The documentation is auto generated at http://localhost:${port}/documentation
 
 You can edit routes files in folder routes/
 

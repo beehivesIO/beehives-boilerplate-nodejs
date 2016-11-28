@@ -6,57 +6,15 @@ import 'babel-polyfill';
 import Hapi from 'hapi';
 import nodeDir from 'node-dir';
 import good from 'good';
-import suspend, { resume, resumeRaw } from 'suspend';
+import suspend, { resume } from 'suspend';
 import process from 'process';
-import path from 'path';
 import fs from 'fs';
-import fsExtra from 'fs-extra';
-import jsonFormat from 'json-format';
 
 import Inert from 'inert';
 import Vision from 'vision';
 import HapiSwagger from 'hapi-swagger';
 
 suspend(function*() {
-
-  const packageJson = require(__dirname + '/../package.json');
-
-  // Create configuration file if not exists yet
-  const lstat = yield fs.lstat('.beehives.json', resumeRaw());
-  // Initialize project
-  if (lstat[0]) {
-    console.log(process.cwd());
-    console.log(__dirname);
-    // Copy boilerplate files
-    yield fsExtra.copy(
-      __dirname + '/../boilerplate/',
-      process.cwd(),
-      { clobber: false },
-      resume()
-    );
-
-    // Rename gitignore file
-    yield fsExtra.move(
-      '.gitignoreToCopy',
-      '.gitignore',
-      { clobber: false },
-      resume()
-    );
-
-    // Update content of beehives.json
-    const name = path.basename(process.env.PWD);
-    let beehivesJson = yield fs.readFile('.beehives.json', 'utf8', resume());
-    beehivesJson = JSON.parse(beehivesJson);
-    beehivesJson = Object.assign(beehivesJson, {
-      boilerplateVersion: packageJson.version,
-      name
-    });
-    yield fs.writeFile(
-      '.beehives.json',
-      jsonFormat(beehivesJson),
-      resume()
-    );
-  }
   const beehivesConf = JSON.parse(yield fs.readFile('.beehives.json', 'utf8', resume()));
 
 

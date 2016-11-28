@@ -17,8 +17,6 @@ suspend(function*() {
   const lstat = yield fs.lstat('.beehives.json', resumeRaw());
   // Initialize project
   if (lstat[0]) {
-    console.log(process.cwd());
-    console.log(__dirname);
     // Copy boilerplate files
     yield fsExtra.copy(
       __dirname + '/../boilerplate/',

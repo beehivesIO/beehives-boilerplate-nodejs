@@ -5,6 +5,8 @@ then
   yarn install
 fi
 
+npm run installation
+
 ./node_modules/babel-watch/babel-watch.js \
   --watch routes/ \
   --presets es2015 \

@@ -34,7 +34,6 @@
     "hapi-swagger": "^7.4.0",
     "inert": "^4.0.2",
     "joi": "^9.1.1",
-    "joi-to-json-schema": "^2.3.0",
     "json-format": "^0.1.2",
     "node-dir": "^0.1.16",
     "suspend": "^0.7.0",

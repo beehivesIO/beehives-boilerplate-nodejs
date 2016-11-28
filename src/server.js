@@ -11,7 +11,6 @@ import process from 'process';
 import path from 'path';
 import fs from 'fs';
 import jsonFormat from 'json-format';
-import documentationRoute from './documentationRoute';
 
 import Inert from 'inert';
 import Vision from 'vision';
@@ -104,12 +103,6 @@ suspend(function*() {
 
     server.route(route);
   }
-
-
-  // Add documentation route
-  server.route(documentationRoute);
-
-
 
 
   // Start server

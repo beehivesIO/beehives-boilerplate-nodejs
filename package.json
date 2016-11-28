@@ -31,11 +31,14 @@
     "good": "^7.0.2",
     "good-console": "^6.1.2",
     "hapi": "^15.1.1",
+    "hapi-swagger": "^7.4.0",
+    "inert": "^4.0.2",
     "joi": "^9.1.1",
     "joi-to-json-schema": "^2.3.0",
     "json-format": "^0.1.2",
     "node-dir": "^0.1.16",
-    "suspend": "^0.7.0"
+    "suspend": "^0.7.0",
+    "vision": "^4.1.0"
   },
   "bin": {
     "beehives-server-nodejs": "./build/server.js"

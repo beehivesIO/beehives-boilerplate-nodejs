@@ -13,6 +13,10 @@ import fs from 'fs';
 import jsonFormat from 'json-format';
 import documentationRoute from './documentationRoute';
 
+import Inert from 'inert';
+import Vision from 'vision';
+import HapiSwagger from 'hapi-swagger';
+
 suspend(function*() {
 
   const packageJson = require(__dirname + '/../package.json');
@@ -24,7 +28,8 @@ suspend(function*() {
     const beehivesJson = {
       boilerplate: 'nodejs',
       boilerplateVersion: packageJson.version,
-      name
+      name,
+      version: '0.0.1'
     };
     yield fs.writeFile(
       '.beehives.json',
@@ -32,6 +37,7 @@ suspend(function*() {
       resume()
     );
   }
+  const beehivesConf = JSON.parse(yield fs.readFile('.beehives.json', 'utf8', resume()));
 
 
   const server = new Hapi.Server();
@@ -59,6 +65,21 @@ suspend(function*() {
   }
 
 
+  // Add support for Swagger
+  yield server.register([
+    Inert,
+    Vision,
+    {
+      register: HapiSwagger,
+      options: {
+        info: {
+          title: beehivesConf.name,
+          version: beehivesConf.version
+        }
+      }
+    }], resume());
+
+
   // Load route
   console.log('Loading routes:');
   const routesFiles = yield nodeDir.files(process.cwd() + '/routes/', resume());
@@ -75,6 +96,10 @@ suspend(function*() {
     const methodsString = routeFile.match(/\(((?:GET|POST|PUT|PATCH|DELETE|OPTIONS|\*|\|)+)\)\.js$/);
     route.method = methodsString ? methodsString[1].split('|') : '*';
 
+    // For Swagger
+    route.config = route.config || {};
+    route.config.tags = route.config.tags || [ 'api' ];
+
     console.log(`\t- http://localhost:${port}${route.path} (${route.method})`);
 
     server.route(route);
@@ -85,11 +110,13 @@ suspend(function*() {
   server.route(documentationRoute);
 
 
+
+
   // Start server
   yield server.start(resume());
   console.log(`
 Your micro service is running :)
-You can access to it through http://localhost:${port}
+The documentation is auto generated at http://localhost:${port}/documentation
 
 You can edit routes files in folder routes/
 

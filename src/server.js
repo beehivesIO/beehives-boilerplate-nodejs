@@ -9,9 +9,6 @@ import good from 'good';
 import suspend, { resume } from 'suspend';
 import process from 'process';
 import fs from 'fs';
-
-import Inert from 'inert';
-import Vision from 'vision';
 import HapiSwagger from 'hapi-swagger';
 
 suspend(function*() {
@@ -44,20 +41,17 @@ suspend(function*() {
 
 
   // Add support for Swagger
-  yield server.register([
-    Inert,
-    Vision,
-    {
-      register: HapiSwagger,
-      options: {
-        info: {
-          title: beehivesConf.name,
-          version: beehivesConf.version,
-          description: yield fs.readFile('README.md', 'utf8', resume())
-        },
-        consumes: [ 'application/form-data' ]
-      }
-    }], resume());
+  yield server.register({
+    register: HapiSwagger,
+    options: {
+      info: {
+        title: beehivesConf.name,
+        version: beehivesConf.version,
+        description: yield fs.readFile('README.md', 'utf8', resume())
+      },
+      consumes: [ 'application/form-data' ]
+    }
+  }, resume());
 
 
   // Load route

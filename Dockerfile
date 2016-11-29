@@ -12,4 +12,4 @@ ENV NODE_ENV production
 
 EXPOSE 9090
 
-ENTRYPOINT yarn start
+ENTRYPOINT yarn run startProduction

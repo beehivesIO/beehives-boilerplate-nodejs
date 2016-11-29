@@ -1,11 +1,5 @@
 #!/bin/bash
 
-if [[ "$NODE_ENV" == "production" ]]
-then
-  yarn install
-fi
-
-
 node node_modules/beehives-boilerplate-nodejs/build/installation.js
 
 ./node_modules/babel-watch/babel-watch.js \

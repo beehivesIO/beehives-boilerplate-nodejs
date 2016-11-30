@@ -44,6 +44,8 @@ suspend(function*() {
   yield server.register({
     register: HapiSwagger,
     options: {
+      documentationPage: false,
+      swaggerUI: false,
       info: {
         title: beehivesConf.name,
         version: beehivesConf.version,

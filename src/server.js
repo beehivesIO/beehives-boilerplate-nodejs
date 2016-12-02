@@ -50,7 +50,8 @@ suspend(function*() {
       register: HapiSwagger,
       options: {
         schemes: [ 'https' ],
-        consumes: [ 'application/x-www-form-urlencoded' ],
+        payloadType: 'form',
+        // consumes: [ 'application/x-www-form-urlencoded' ],
         // documentationPage: false,
         // swaggerUI: false,
         info: {

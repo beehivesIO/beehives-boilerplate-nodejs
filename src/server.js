@@ -43,23 +43,22 @@ suspend(function*() {
 
 
   // Add support for Swagger
+  const scheme = process.env.NODE_ENV === 'production' ? 'https' : 'http';
   yield server.register([
     Inert,
     Vision,
     {
       register: HapiSwagger,
       options: {
-        schemes: [ 'https' ],
+        schemes: [ scheme ],
         payloadType: 'form',
-        consumes: [ 'application/form-data' ],
         // documentationPage: false,
         // swaggerUI: false,
         info: {
           title: beehivesConf.name,
           version: beehivesConf.version,
           description: yield fs.readFile('README.md', 'utf8', resume())
-        },
-        consumes: [ 'application/form-data' ]
+        }
       }
     }], resume());
 

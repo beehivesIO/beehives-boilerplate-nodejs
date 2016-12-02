@@ -51,7 +51,7 @@ suspend(function*() {
       options: {
         schemes: [ 'https' ],
         payloadType: 'form',
-        // consumes: [ 'application/x-www-form-urlencoded' ],
+        consumes: [ 'application/form-data' ],
         // documentationPage: false,
         // swaggerUI: false,
         info: {

@@ -1,6 +1,6 @@
 {
   "name": "beehives-boilerplate-nodejs",
-  "version": "0.0.82",
+  "version": "0.0.83",
   "description": "BeeHives nodeJS boilerplate",
   "main": "server.js",
   "scripts": {

@@ -67,25 +67,31 @@ suspend(function*() {
   console.log('Loading routes:');
   const routesFiles = yield nodeDir.files(process.cwd() + '/routes/', resume());
   for (const routeFile of routesFiles) {
-    const route = require(routeFile);
+    try {
+      const route = require(routeFile);
 
-    const routePath = routeFile
-    .replace(process.cwd() + '/routes', '')
-    .replace(/\.js$/, '')
-    .replace(/\((?:GET|POST|PUT|PATCH|DELETE|OPTIONS|\*|\|)+\)$/, '')
-    .replace(/_default$/, '');
-    route.path = routePath;
+      const routePath = routeFile
+      .replace(process.cwd() + '/routes', '')
+      .replace(/\.js$/, '')
+      .replace(/\((?:GET|POST|PUT|PATCH|DELETE|OPTIONS|\*|\|)+\)$/, '')
+      .replace(/_default$/, '');
+      route.path = routePath;
 
-    const methodsString = routeFile.match(/\(((?:GET|POST|PUT|PATCH|DELETE|OPTIONS|\*|\|)+)\)\.js$/);
-    route.method = methodsString ? methodsString[1].split('|') : '*';
+      const methodsString = routeFile.match(/\(((?:GET|POST|PUT|PATCH|DELETE|OPTIONS|\*|\|)+)\)\.js$/);
+      route.method = methodsString ? methodsString[1].split('|') : '*';
 
-    // For Swagger
-    route.config = route.config || {};
-    route.config.tags = route.config.tags || [ 'api' ];
+      // For Swagger
+      route.config = route.config || {};
+      route.config.tags = route.config.tags || [ 'api' ];
 
-    console.log(`\t- http://localhost:${port}${route.path} (${route.method})`);
+      console.log(`\t- http://localhost:${port}${route.path} (${route.method})`);
 
-    server.route(route);
+      server.route(route);
+    }
+    catch (error) {
+      console.error(`You have an error on route ${routeFile} :(`);
+      console.error(error);
+    }
   }
 
 

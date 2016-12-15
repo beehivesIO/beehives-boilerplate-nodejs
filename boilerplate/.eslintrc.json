@@ -29,5 +29,6 @@
     "ecmaFeatures": {
       "experimentalObjectRestSpread": true
     }
-  }
+  },
+  "extends": "eslint:recommended"
 }
